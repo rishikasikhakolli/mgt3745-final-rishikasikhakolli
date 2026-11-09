@@ -19,7 +19,7 @@
 
 ### Changes made
 - Carried forward from mgt3745-hw5 (commit 6d77c86): AGENTS, ARCHITECTURE, CLAUDE, EVALS, FEATURES, PROJECT, SKILLS, STANDARDS, STYLE, TOOLS, USERS.
-- Not carried forward: `context/README.md` and `curiosity/`.
+- Not carried forward: `context/README.md` and `curiosity/` (neither is one of the eleven context files).
 - DESIGN.md left as the template stub; HW5 had none.
 - `worker/` kept: Travlr uses a Cloudflare Worker + D1 backend.
 
