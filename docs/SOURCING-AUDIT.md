@@ -53,6 +53,18 @@ Installed packages: 0 (checked with `npm ls --all` on 2026-11-09). Scripts from 
 ### Scores and Rings
 | Dependency | Stability | Pricing | Institutional fit | Exit cost | Weighted | Ring | Reason in one line |
 |------------|---|---|---|---|---|---|---|
+| Cloudflare Workers | 5 | 4 | 5 | 3 | 4.10 | | |
+| Cloudflare D1 | 4 | 4 | 5 | 4 | 4.15 | | |
+| GitHub Pages | 5 | 5 | 5 | 5 | 5.00 | | |
+| GitHub + Codespaces | 5 | 4 | 5 | 4 | 4.45 | | |
+| wrangler | 3 | 5 | 5 | 4 | 4.05 | | |
+| Node.js 22 + built-in test runner | 5 | 5 | 5 | 4 | 4.65 | | |
+| Live Server extension | 1 | 5 | 4 | 5 | 3.65 | | |
+| GitHub Copilot | 4 | 2 | 5 | 5 | 4.10 | | |
+| Claude | 4 | 3 | 4 | 5 | 4.15 | | |
+| bolt.new | 3 | 4 | 2 | 4 | 3.40 | | |
+| Google AI Studio | 4 | 5 | 2 | 5 | 4.25 | | |
+| gemini-3.5-flash (template default) | 2 | 5 | 3 | 5 | 3.80 | | |
 
 ### Exit Plans (every critical dependency, every Trial)
 | Dependency | Trigger | Substitute | Hours to swap | Tested? (date and how) |
