@@ -3,15 +3,15 @@
 ## Audit 1, November 2026
 
 ### Prediction Stake (commit before any evidence)
-<One falsifiable prediction about what this audit will find. Resolution: Tight / Loose / Open.>
+I predict that at least 9 of my 12 tools will be rated "Adopt" (safe to use). Resolution: Tight.
 
 ### Weights (commit in their own commit, before scoring)
 | Criterion | Weight | Why this weight for this project |
 |-----------|--------|----------------------------------|
-| Stability | | |
-| Pricing predictability | | |
-| Institutional fit | | |
-| Exit cost | | |
+| Stability | 30 | Real users will be on the live app from Nov 19 to Dec 14, so anything that breaks or changes mid-semester hurts most. |
+| Pricing predictability | 20 | I have no budget, but traffic should stays well inside free tiers. |
+| Institutional fit | 15 | The course already uses GitHub and Cloudflare. |
+| Exit cost | 35 | All my users' reviews and photos will be stored in D1, so it matters if I need to move them. |
 Total: 100
 
 ### Inventory
