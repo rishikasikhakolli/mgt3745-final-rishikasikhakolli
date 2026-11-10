@@ -1,5 +1,68 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Project name</title></head>
-<body><main><h1>Project name</h1><p>Replace this page with your product. GitHub Pages serves it from the repository root.</p></main></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travlr - Photo Review</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app-container">
+    <header class="app-header">
+      <h1>Review your Travels</h1>
+      <p>Upload a photo of your spot and leave your review below.</p>
+    </header>
+
+    <section class="form-section">
+      <form id="review-form">
+        <div class="form-group">
+          <label for="spot-name">Spot Name</label>
+          <input type="text" id="spot-name" name="spotName" placeholder="e.g., Cafe de Flore" required>
+        </div>
+
+        <div class="form-group">
+          <label for="spot-image">Upload Photo</label>
+          <input type="file" id="spot-image" name="spotImage" accept="image/*" required>
+        </div>
+
+        <div id="image-preview-container" class="hidden">
+          <img id="image-preview" alt="Preview of uploaded spot photo">
+        </div>
+
+        <div class="form-group">
+          <label for="review-text">Your Review</label>
+          <textarea id="review-text" name="reviewText" rows="4" placeholder="Write your review here..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label id="category-label">Category</label>
+          <div id="category-buttons" role="radiogroup" aria-labelledby="category-label">
+            <button type="button" class="category-chip" data-category="Food" aria-checked="false">🍽️ Food</button>
+            <button type="button" class="category-chip" data-category="Landmark" aria-checked="false">🏛️ Landmark</button>
+            <button type="button" class="category-chip" data-category="Views" aria-checked="false">🌄 Views</button>
+            <button type="button" class="category-chip" data-category="Activity" aria-checked="false">🎨 Activity</button>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn">Save Review</button>
+      </form>
+
+      <p id="save-status" role="status" aria-live="polite" class="hidden"></p>
+    </section>
+
+    <section class="reviews-section">
+      <h2>Saved Photo Reviews</h2>
+      <div id="filter-bar">
+        <button type="button" class="filter-chip active" data-filter="All" aria-selected="true">All</button>
+        <button type="button" class="filter-chip" data-filter="Food" aria-selected="false">🍽️ Food</button>
+        <button type="button" class="filter-chip" data-filter="Landmark" aria-selected="false">🏛️ Landmark</button>
+        <button type="button" class="filter-chip" data-filter="Views" aria-selected="false">🌄 Views</button>
+        <button type="button" class="filter-chip" data-filter="Activity" aria-selected="false">🎨 Activity</button>
+      </div>
+      <p id="empty-state">No photo reviews added yet.</p>
+      <ul id="reviews-list" class="reviews-list"></ul>
+    </section>
+  </main>
+</body>
 </html>
