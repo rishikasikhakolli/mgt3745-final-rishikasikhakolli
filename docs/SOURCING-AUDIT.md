@@ -3,8 +3,6 @@
 ## Audit 1, November 2026
 
 ### Prediction Stake (commit before any evidence)
-*Weights and Stake committed in d77e2d0, before any evidence below.*
-
 I predict that at least 9 of my 12 tools will be rated "Adopt" (safe to use). Resolution: Tight.
 
 ### Weights (commit in their own commit, before scoring)
@@ -35,8 +33,12 @@ Total: 100
 Installed packages: 0 (checked with `npm ls --all` on 2026-11-09). Scripts from other websites: none (index.html only loads its own app.js).
 
 ### Evidence (each fact with its source and the date you read it)
+*Weights and Stake committed in d77e2d0, before any evidence below.*
+
 | Dependency | Latest version and date | Maintainers or vendor | License or terms | Limits or price | Other notes | Checked on |
 |------------|------|------|------|------|------|------|
+| wrangler | 4.159.0, released 2026-11-09 | Cloudflare (one publishing account) | MIT or Apache-2.0 | Free | Not deprecated. New versions come out very often, and I don't use a fixed version. 0 security issues (npm audit). | 2026-11-09, npm view |
+| Node.js 22 + built-in test runner | v22.23.4 | OpenJS Foundation | MIT | Free | Supported until 2027-04-30 (github.com/nodejs/release), well after the project ends. | 2026-11-09, node --version |
 
 ### Scores and Rings
 | Dependency | Stability | Pricing | Institutional fit | Exit cost | Weighted | Ring | Reason in one line |
