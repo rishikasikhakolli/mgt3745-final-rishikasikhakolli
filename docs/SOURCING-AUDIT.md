@@ -53,18 +53,18 @@ Installed packages: 0 (checked with `npm ls --all` on 2026-11-09). Scripts from 
 ### Scores and Rings
 | Dependency | Stability | Pricing | Institutional fit | Exit cost | Weighted | Ring | Reason in one line |
 |------------|---|---|---|---|---|---|---|
-| Cloudflare Workers | 5 | 4 | 5 | 3 | 4.10 | | |
-| Cloudflare D1 | 4 | 4 | 5 | 4 | 4.15 | | |
-| GitHub Pages | 5 | 5 | 5 | 5 | 5.00 | | |
-| GitHub + Codespaces | 5 | 4 | 5 | 4 | 4.45 | | |
-| wrangler | 3 | 5 | 5 | 4 | 4.05 | | |
-| Node.js 22 + built-in test runner | 5 | 5 | 5 | 4 | 4.65 | | |
-| Live Server extension | 1 | 5 | 4 | 5 | 3.65 | | |
-| GitHub Copilot | 4 | 2 | 5 | 5 | 4.10 | | |
-| Claude | 4 | 3 | 4 | 5 | 4.15 | | |
-| bolt.new | 3 | 4 | 2 | 4 | 3.40 | | |
-| Google AI Studio | 4 | 5 | 2 | 5 | 4.25 | | |
-| gemini-3.5-flash (template default) | 2 | 5 | 3 | 5 | 3.80 | | |
+| Cloudflare Workers | 5 | 4 | 5 | 3 | 4.10 | Adopt | Free tier covers my traffic and it already runs my app. |
+| Cloudflare D1 | 4 | 4 | 5 | 4 | 4.15 | Adopt | Holds all reviews within free limits. |
+| GitHub Pages | 5 | 5 | 5 | 5 | 5.00 | Adopt | Free, stable, and plain files I can host anywhere. |
+| GitHub + Codespaces | 5 | 4 | 5 | 4 | 4.45 | Adopt | The course runs on it. |
+| wrangler | 3 | 5 | 5 | 4 | 4.05 | Adopt | Official Cloudflare tool, but it releases almost daily, so I pinned one version. |
+| Node.js 22 + built-in test runner | 5 | 5 | 5 | 4 | 4.65 | Adopt | Supported until April 2027, and the test runner needs no extra packages. |
+| Live Server extension | 1 | 5 | 4 | 5 | 3.65 | Trial | No update since 2019, but any local server can replace it. |
+| GitHub Copilot | 4 | 2 | 5 | 5 | 4.10 | Adopt | Course tool. |
+| Claude | 4 | 3 | 4 | 5 | 4.15 | Adopt | Useful helper and logged in DDRs. |
+| bolt.new | 3 | 4 | 2 | 4 | 3.40 | Hold | Score says Trial, but in HW5 it replaced my backend without asking, so I won't use it again. |
+| Google AI Studio | 4 | 5 | 2 | 5 | 4.25 | Adopt | Kept my backend in HW5 and is my pick for edits; free-tier data terms mean I only paste non-sensitive code. |
+| gemini-3.5-flash (template default) | 2 | 5 | 3 | 5 | 3.80 | Hold | Score says Trial, but Travlr has no AI feature. |
 
 ### Exit Plans (every critical dependency, every Trial)
 | Dependency | Trigger | Substitute | Hours to swap | Tested? (date and how) |
