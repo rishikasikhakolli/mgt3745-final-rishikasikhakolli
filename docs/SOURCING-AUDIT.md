@@ -69,6 +69,10 @@ Installed packages: 0 before the wrangler pin, 38 after (see Changes). Checked w
 ### Exit Plans (every critical dependency, every Trial)
 | Dependency | Trigger | Substitute | Hours to swap | Tested? (date and how) |
 |------------|---|---|---|---|
+| Cloudflare D1 | Running out of free space, photos not saving, or lost data | Turso (can load the same export) | 3 to 5 | Yes, 2026-11-11: exported the database with `npx wrangler d1 export` and got a 2.4 KB file with 19 saved rows. Deleted if after. |
+| Cloudflare Workers | Traffic goes over 100,000 requests/day, or Cloudflare changes the free plan | Netlify Functions | 4 to 6 | No |
+| GitHub Pages | Pages goes down or its rules change | Cloudflare Pages or Netlify | 1 | No |
+| Live Server extension | It stops working in Codespaces | `python3 -m http.server` | <1 | No |
 
 ### Changes Caused by This Audit
 - Pinned wrangler to 4.159.0 in package.json (commit f2f37d3), so it only updates when I choose.
