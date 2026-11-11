@@ -2,10 +2,10 @@
 
 ## Audit 1, November 2026
 
-### Prediction Stake (commit before any evidence)
+### Prediction Stake
 I predict that at least 9 of my 12 tools will be rated "Adopt" (safe to use). Resolution: Tight.
 
-### Weights (commit in their own commit, before scoring)
+### Weights
 | Criterion | Weight | Why this weight for this project |
 |-----------|--------|----------------------------------|
 | Stability | 30 | Real users will be on the live app from Nov 19 to Dec 14, so anything that breaks or changes mid-semester hurts most. |
