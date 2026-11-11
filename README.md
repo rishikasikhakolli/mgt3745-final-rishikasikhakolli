@@ -1,12 +1,12 @@
-# <Project Name>
+# Travlr
 
-> Replace every line in angle brackets. A README that still carries template placeholders loses points.
+**One sentence:** Travlr lets casual travelers post a photo, the spot's name, and a short review so friends can follow their trip without the pressure of your average social media application.
 
-**One sentence:** <what this product does, for whom, and the change it exists to cause>
+**Deployed:** [Travlr URL](https://rishikasikhakolli.github.io/mgt3745-final-rishikasikhakolli/) · [Worker API](https://mgt3745-hw4.travlr.workers.dev/entries)
 
-**Deployed:** <https URL of the live product>  
-**Status:** <working / partly working / blocked, with one sentence on what is incomplete>  
-**Hours spent:** <running total>
+**Status:** Partly working. Review text saves to the server; photos and spot names still save only in the poster's browser until the D1 change in ADR-001 is built.
+
+**Hours spent:** ~9 on final repo (as of 2026-11-11), plus earlier work (~45 hours)
 
 ## See It Work
 
@@ -14,14 +14,15 @@
 
 ## Who It Is For
 
-<One paragraph from context/USERS.md: the person, the job, and why today's alternatives fall short.>
+Casual travelers who take lots of photos and want a quick, low-pressure way to share highlights with friends. Today they text scattered photos or skip posting because social media feels too formal or judged, and they forget details because nothing was recorded. See [context/USERS.md](context/USERS.md).
 
 ## Run It
 
 ```bash
 npm install
-npm test                 # code evals in evals/
-npx wrangler dev         # only if the project has a worker/ backend
+npm test                       # code evals in evals/
+npx wrangler login --device    # sign in to Cloudflare (works in Codespaces)
+npx wrangler dev               # runs the Worker locally
 ```
 
 ## The Record
@@ -37,9 +38,11 @@ npx wrangler dev         # only if the project has a worker/ backend
 | Decision memo | [docs/DECISION-001.md](docs/DECISION-001.md) |
 | Real-user feedback | [docs/FEEDBACK.md](docs/FEEDBACK.md) |
 | Scaffold audits | [docs/AUDIT.md](docs/AUDIT.md) |
+| Sourcing audit | [docs/SOURCING-AUDIT.md](docs/SOURCING-AUDIT.md) |
+| Tools and Trust Boundary | [context/TOOLS.md](context/TOOLS.md) |
 | Deployment notes | [docs/DEPLOY.md](docs/DEPLOY.md) |
 | Self-review with Homogenization Check | [docs/SELF-REVIEW.md](docs/SELF-REVIEW.md) |
 
 ## AI Use
 
-<Which tools wrote what, in two or three sentences. The detail lives in docs/DDR-LOG.md; this paragraph orients a stranger.>
+Claude drafted ADR-001, the Audit 1 findings, and most of the HW7 sourcing audit rows. GitHub Copilot ran the /audit prompt file. I checked every number at its source, ran every command myself, and set the final verdicts, scores, and rings. Each use is logged with its verification in [docs/DDR-LOG.md](docs/DDR-LOG.md).
