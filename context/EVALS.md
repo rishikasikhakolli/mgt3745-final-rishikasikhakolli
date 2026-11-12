@@ -1,5 +1,17 @@
 # EVALS.md
 
+## Final
+
+### Riskiest Assumption (RAT)
+Friends will actually open a shared Travlr link and look at the trip cards. I'll know it's false if fewer than 2 of my 3 real users open the feed after I share it with them.
+
+### Prediction Stake (before build, 2026-11-12)
+- **Tight:** At least 2 of my 3 real users will open the Travlr link within 24 hours of my sending it.
+- **Loose:** Users will react more to the photos than to the review text.
+- **Open:** At least one user will ask how to post their own trip. Resolves when I collect feedback in docs/FEEDBACK.md.
+
+## HW5 History
+
 The verification table from HW3, grown up. Five sections, in this order.
 The first two are written and committed BEFORE any tool sees the spec.
 
