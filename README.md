@@ -10,7 +10,7 @@
 
 ## See It Work
 
-[The product in use](docs/img/see-it-work.gif)
+![The product in use](docs/img/see-it-work.gif)
 
 ## Who It Is For
 
