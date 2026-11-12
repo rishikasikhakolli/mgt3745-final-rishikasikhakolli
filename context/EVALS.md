@@ -2,7 +2,7 @@
 
 ## Final
 
-### Riskiest Assumption (RAT)
+### Riskiest assumption (RAT)
 Friends will actually open a shared Travlr link and look at the trip cards. I'll know it's false if fewer than 2 of my 3 real users open the feed after I share it with them.
 
 ### Prediction Stake (before build, 2026-11-12)
