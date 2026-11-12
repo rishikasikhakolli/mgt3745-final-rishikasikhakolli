@@ -18,17 +18,17 @@ Total: 100
 | Dependency | Kind (package, dev package, platform, model, builder, CDN script) | Where it is recorded | Ships to users? |
 |------------|------|------|------|
 | Cloudflare Workers | platform | worker/wrangler.toml, ADR-001 | Yes: runs the API |
-| Cloudflare D1 | platform (database) | ADR-001; D1 binding to add in wrangler.toml | Yes: stores reviews, spot names, photos |
+| Cloudflare D1 | platform (database) | worker/wrangler.toml, ADR-001 | Yes: stores reviews, spot names, photos |
 | GitHub Pages | platform (hosting) | ADR-001, README | Yes: serves the page |
 | GitHub + Codespaces | platform | .devcontainer/devcontainer.json | No |
 | wrangler | dev package (pinned 4.159.0 in package.json) | package.json, README "Run It" | No |
 | Node.js 22 + built-in test runner | platform (runtime) | devcontainer.json image, package.json test script | No |
 | Live Server extension | dev tool | devcontainer.json | No |
 | GitHub Copilot | builder | devcontainer.json, TOOLS.md, DDR-001 | No |
-| Claude | builder | DDR-001 to DDR-005 | No |
+| Claude | builder | DDR-001 to DDR-006 | No |
 | bolt.new | builder | HW5 DDRs (EVALS.md) | No |
 | Google AI Studio | builder | HW5 DDRs (EVALS.md) | No |
-| gemini-3.5-flash via Cloudflare AI Gateway | model | worker/wrangler.toml (template default) | No: Travlr has no AI feature |
+| gemini-3.5-flash via Cloudflare AI Gateway | model | Removed from worker/wrangler.toml | No: Travlr has no AI feature |
 
 Installed packages: 0 before the wrangler pin, 38 after (see Changes). Checked with `npm ls --all` on 2026-11-09 and 11-10. Scripts from other websites: none (index.html only loads its own app.js).
 
@@ -69,7 +69,7 @@ Installed packages: 0 before the wrangler pin, 38 after (see Changes). Checked w
 ### Exit Plans (every critical dependency, every Trial)
 | Dependency | Trigger | Substitute | Hours to swap | Tested? (date and how) |
 |------------|---|---|---|---|
-| Cloudflare D1 | Running out of free space, photos not saving, or lost data | Turso (can load the same export) | 3 to 5 | Yes, 2026-11-11: exported the database with `npx wrangler d1 export` and got a 2.4 KB file with 19 saved rows. Deleted if after. |
+| Cloudflare D1 | Running out of free space, photos not saving, or lost data | Turso (can load the same export) | 3 to 5 | Yes, 2026-11-11: exported the database with `npx wrangler d1 export` and got a 2.4 KB file with 19 saved rows. Deleted it after. |
 | Cloudflare Workers | Traffic goes over 100,000 requests/day, or Cloudflare changes the free plan | Netlify Functions | 4 to 6 | No |
 | GitHub Pages | Pages goes down or its rules change | Cloudflare Pages or Netlify | 1 | No |
 | Live Server extension | It stops working in Codespaces | `python3 -m http.server` | <1 | No |
