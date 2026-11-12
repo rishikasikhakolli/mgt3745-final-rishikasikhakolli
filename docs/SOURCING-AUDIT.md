@@ -78,9 +78,9 @@ Installed packages: 0 before the wrangler pin, 38 after (see Changes). Checked w
 - Pinned wrangler to 4.159.0 in package.json (commit f2f37d3), so it only updates when I choose.
 - Packages went from 0 to 38 after the pin, with 0 vulnerabilities.
 - npm test is the same before and after: only the template test (F-01a) fails.
-- The unused Gemini lines in worker/wrangler.toml will be removed when Travlr's Worker replaces the template one.
+- Replaced the template Worker with Travlr's (commit 2bd81ca), which removed the unused Gemini settings.
 - ADR-001 not changed; the audit supports it.
-- Added DDR-004 and DDR-005.
+- Added DDR-004 through DDR-006.
 
 ### Prediction Stake Resolution
 The prediction held: 9 of 12 tools were rated Adopt. The other three were Live Server (Trial), bolt.new (Hold), and the Gemini model (Hold). Google AI Studio, was a judgment call because its free-tier data terms could have put it in Assess, which would have made the count 8.
