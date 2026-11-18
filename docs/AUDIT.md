@@ -4,7 +4,7 @@
 
 | File | Reader | Last changed | Finding | Verdict | PR |
 |---|---|---|---|---|---|
-| PROJECT.md | Human, agent | 2026-09-25 (HW5) | No reframe or three success measures; lists category ranking as Deferred, but FEATURES says Built | Rewrite | |
+| PROJECT.md | Human, agent | 2026-09-25 (HW5) | No reframe or three success measures; lists category ranking as Deferred, but FEATURES says Built | Rewrite | [commit a1897ec](https://github.com/rishikasikhakolli/mgt3745-final-rishikasikhakolli/commit/a1897ec), [PR #1](https://github.com/rishikasikhakolli/mgt3745-final-rishikasikhakolli/pull/1) |
 | USERS.md | Human, agent | 2026-09-25 (HW5) | Two users and a journey, but not written as job statements | Rewrite | |
 | FEATURES.md | Human, agent | 2026-09-30 (HW5) | No row IDs (template test expects F-01a); no exclusions; "Server unreachable" still CANNOT TEST YET; template comments left in | Rewrite | |
 | ARCHITECTURE.md | Human, agent | 2026-09-30 (HW5) | ADRs belong in docs/ADR-001.md; no diagram or Trust Boundary; duplicate ADR-001 heading; template line left at bottom | Rewrite | |
