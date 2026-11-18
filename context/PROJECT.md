@@ -2,7 +2,7 @@
 
 ## Problem statement
 
-Traveling is one of people's most beloved hobbies, and travelers are constantly taking pictures to share. But today's social media feels judged with some platforms being too formal and others too serious. I take trips often and love sharing them with friends on social media and over text, but I never get to simply put my thoughts out there quickly, and I often forget details because they were never recorded.
+Traveling is one of people's most beloved hobbies, and travelers are constantly taking pictures to share. Today's social media feels judged with some platforms being too formal and others too serious. I take trips often and love sharing them with friends on social media and over text, but I never get to simply put my thoughts out there quickly, and I often forget details because they were never recorded.
 
 ## Reframe
 - **Original framing:** Travelers need a less judgmental social media platform to share their trips.
