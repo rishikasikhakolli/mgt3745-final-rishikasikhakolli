@@ -16,11 +16,14 @@ const CORS = {
 
 const ALLOWED_CATEGORIES = ["Food", "Landmark", "Views", "Activity"];
 
+// ADR-001: photos are resized in the browser, then stored in D1 as a data URL.
+// D1 rows max out around 2 MB, so anything over ~1.4 million characters
+// (about 1 MB of image) is rejected with a clear 400 instead of failing deep in D1.
+const MAX_PHOTO_CHARS = 1400000;
+const MAX_SPOT_NAME_CHARS = 100;
+
 export default {
   async fetch(request, env) {
-    // Anything that throws below becomes a readable 500 instead of a bare
-    // "Error 1101: Worker threw exception". The message names the cause,
-    // which is what your verification table needs.
     try {
       return await handle(request, env);
     } catch (err) {
@@ -32,15 +35,10 @@ export default {
 async function handle(request, env) {
   const url = new URL(request.url);
 
-  // Browsers send an OPTIONS "preflight" before a JSON POST from another
-  // origin. Answer it with the CORS headers and nothing else.
-  // (Not on the Session B slide; it is the one line the slide left out.)
   if (request.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: CORS });
   }
 
-  // The most common Session B failure: the D1 binding did not attach because
-  // wrangler.toml still says PASTE_ID_HERE or the id was pasted badly.
   if (!env.DB) {
     return new Response(
       "server error: no D1 binding. Check database_id in wrangler.toml and redeploy.",
@@ -49,11 +47,11 @@ async function handle(request, env) {
 
   if (request.method === "GET" && url.pathname === "/entries") {
     const { results } = await env.DB.prepare(
-      "SELECT * FROM entries ORDER BY id").all();
+      "SELECT id, text, category, spot_name, photo, created_at FROM entries ORDER BY id").all();
     return Response.json(results, { headers: CORS });
   }
 
-    if (request.method === "POST" && url.pathname === "/entries") {
+  if (request.method === "POST" && url.pathname === "/entries") {
     let body;
     try {
       body = await request.json();
@@ -68,13 +66,29 @@ async function handle(request, env) {
         "category must be one of: " + ALLOWED_CATEGORIES.join(", "),
         { status: 400, headers: CORS });
     }
-    const result = await env.DB.prepare("INSERT INTO entries (text, category) VALUES (?, ?)")
-      .bind(body.text, body.category).run();
+    const spotName = typeof body.spotName === "string" ? body.spotName.trim() : "";
+    if (!spotName) {
+      return new Response("spot name must not be empty", { status: 400, headers: CORS });
+    }
+    if (spotName.length > MAX_SPOT_NAME_CHARS) {
+      return new Response(
+        "spot name must be " + MAX_SPOT_NAME_CHARS + " characters or fewer",
+        { status: 400, headers: CORS });
+    }
+    if (typeof body.photo !== "string" || !body.photo.startsWith("data:image/")) {
+      return new Response("photo must be an image", { status: 400, headers: CORS });
+    }
+    if (body.photo.length > MAX_PHOTO_CHARS) {
+      return new Response("photo is too large, please choose a smaller image", { status: 400, headers: CORS });
+    }
+    const result = await env.DB.prepare(
+      "INSERT INTO entries (text, category, spot_name, photo) VALUES (?, ?, ?, ?)")
+      .bind(body.text, body.category, spotName, body.photo).run();
     return new Response(JSON.stringify({ id: result.meta.last_row_id }), {
       status: 201,
       headers: { ...CORS, "content-type": "application/json" },
     });
-  }
-    
+   }
+
   return new Response("not found", { status: 404, headers: CORS });
 }

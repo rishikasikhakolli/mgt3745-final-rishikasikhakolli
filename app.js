@@ -1,5 +1,9 @@
 const API = "https://mgt3745-hw4.travlr.workers.dev";
-const LOCAL_META_KEY = 'travlr_local_meta';
+
+// ADR-001: photos are shrunk in the browser before upload so each D1 row
+// stays well under its ~2 MB limit.
+const MAX_PHOTO_WIDTH = 1000;
+const PHOTO_QUALITY = 0.8;
 
 const reviewForm = document.getElementById('review-form');
 const spotNameInput = document.getElementById('spot-name');
@@ -46,11 +50,11 @@ async function loadServerEntries() {
   return res.json();
 }
 
-async function saveEntryToServer(text, category) {
+async function saveEntryToServer(text, category, spotName, photo) {
   const res = await fetch(API + "/entries", {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({ text, category }),
+    body: JSON.stringify({ text, category, spotName, photo }),
   });
   if (!res.ok) {
     const reason = await res.text();
@@ -61,21 +65,32 @@ async function saveEntryToServer(text, category) {
   return id;
 }
 
-function loadLocalMeta() {
-  const saved = localStorage.getItem(LOCAL_META_KEY);
-  return saved ? JSON.parse(saved) : {};
-}
-
-function setLocalMeta(id, spotName, imageData) {
-  const meta = loadLocalMeta();
-  meta[id] = { spotName, imageData };
-  localStorage.setItem(LOCAL_META_KEY, JSON.stringify(meta));
+// Shrinks an image file to at most MAX_PHOTO_WIDTH pixels wide and returns
+// it as a JPEG data URL. Resolves to null if the file can't be read as an image.
+function resizeImage(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onerror = () => resolve(null);
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onerror = () => resolve(null);
+      img.onload = () => {
+        const scale = Math.min(1, MAX_PHOTO_WIDTH / img.width);
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        resolve(canvas.toDataURL('image/jpeg', PHOTO_QUALITY));
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 async function renderReviews() {
   reviewsList.textContent = '';
   const entries = await loadServerEntries();
-  const localMeta = loadLocalMeta();
 
   const filtered = currentFilter === 'All'
     ? entries
@@ -92,8 +107,6 @@ async function renderReviews() {
   emptyState.classList.add('hidden');
 
   filtered.forEach((entry) => {
-    const meta = localMeta[entry.id];
-
     const card = document.createElement('li');
     card.className = 'review-card';
 
@@ -102,7 +115,7 @@ async function renderReviews() {
 
     const title = document.createElement('h3');
     title.className = 'review-card-title';
-    title.textContent = meta && meta.spotName ? meta.spotName : 'Untitled Spot';
+    title.textContent = entry.spot_name || 'Untitled Spot';
     header.appendChild(title);
 
     if (entry.category) {
@@ -114,11 +127,11 @@ async function renderReviews() {
 
     card.appendChild(header);
 
-    if (meta && meta.imageData) {
+    if (entry.photo) {
       const img = document.createElement('img');
       img.className = 'review-card-img';
-      img.src = meta.imageData;
-      img.alt = `Photo of ${meta.spotName || 'saved spot'}`;
+      img.src = entry.photo;
+      img.alt = `Photo of ${entry.spot_name || 'saved spot'}`;
       card.appendChild(img);
     }
 
@@ -151,21 +164,29 @@ function resetForm() {
   imagePreviewContainer.classList.add('hidden');
 }
 
-spotImageInput.addEventListener('change', (event) => {
+spotImageInput.addEventListener('change', async (event) => {
   const file = event.target.files[0];
+  currentBase64Image = '';
+  imagePreviewContainer.classList.add('hidden');
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      currentBase64Image = e.target.result;
-      imagePreview.src = currentBase64Image;
-      imagePreviewContainer.classList.remove('hidden');
-    };
-    reader.readAsDataURL(file);
-  } else {
-    currentBase64Image = '';
-    imagePreviewContainer.classList.add('hidden');
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    spotImageInput.value = '';
+    showStatus('Please select a valid image file.', false);
+    return;
   }
+
+  const resized = await resizeImage(file);
+  if (!resized) {
+    spotImageInput.value = '';
+    showStatus('That photo could not be read. Please try a different image.', false);
+    return;
+  }
+
+  currentBase64Image = resized;
+  imagePreview.src = currentBase64Image;
+  imagePreviewContainer.classList.remove('hidden');
 });
 
 reviewForm.addEventListener('submit', async (event) => {
@@ -184,10 +205,9 @@ reviewForm.addEventListener('submit', async (event) => {
   }
 
   try {
-    const id = await saveEntryToServer(reviewText, selectedCategory);
+    const id = await saveEntryToServer(reviewText, selectedCategory, spotName, currentBase64Image);
     if (id === null) return;
 
-    setLocalMeta(id, spotName, currentBase64Image);
     resetForm();
     showStatus('Photo review saved successfully!', true);
     await renderReviews();
