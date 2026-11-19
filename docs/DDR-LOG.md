@@ -9,3 +9,4 @@
 | DDR-005 | 2026-11-10 | Ring reasons, wrangler pin, Changes section | Claude | ~30 minutes | Rishika, checked each reason against the evidence and ran tests | Done |
 | DDR-006 | 2026-11-11 | Exit plans | Claude | ~30 minutes | Rishika, checked each substitute and ran the D1 export | Done |
 | DDR-007 | 2026-11-12 | Final RAT | Claude | ~30 minutes | Rishika, chose the RAT | Done |
+| DDR-008 | 2026-11-19 | Photos and spot names saved in D1 (ADR-001) | Claude | ~2 hours | Rishika, ran the migration and deploy, tested on two devices | Open |
