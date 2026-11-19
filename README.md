@@ -4,7 +4,7 @@
 
 **Deployed:** [Travlr URL](https://rishikasikhakolli.github.io/mgt3745-final-rishikasikhakolli/) · [Worker API](https://mgt3745-hw4.travlr.workers.dev/entries)
 
-**Status:** Partly working. Review text saves to the server; photos and spot names still save only in the poster's browser until the D1 change in ADR-001 is built.
+**Status:** Working. Reviews, photos, and spot names save to the server and show on any device. Older reviews (before 2026-11-19) show without photos because those were only stored in the original browser.
 
 **Hours spent:** ~9 on final repo (as of 2026-11-11), plus earlier work (~45 hours)
 
