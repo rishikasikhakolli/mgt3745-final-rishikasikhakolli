@@ -7,7 +7,7 @@ Friends will actually open a shared Travlr link and look at the trip cards. I'll
 
 ### Prediction Stake (before build, 2026-11-12)
 - **Tight:** At least 2 of my 3 real users will open the Travlr link within 24 hours of my sending it.
-     - Resolved 2026-11-19: 3 of 3 opened the link within 24 hours [docs/FEEDBACK.md](../docs/FEEDBACK.md)). Held.
+     - Resolved 2026-11-19: 3 of 3 opened the link within 24 hours ([docs/FEEDBACK.md](../docs/FEEDBACK.md)). Held.
 - **Loose:** Users will react more to the photos than to the review text.
 - **Open:** At least one user will ask how to post their own trip. Resolves when I collect feedback in docs/FEEDBACK.md.
 
